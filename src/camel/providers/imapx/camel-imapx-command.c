@@ -453,7 +453,7 @@ camel_imapx_command_add_part (CamelIMAPXCommand *ic,
 	}
 	case CAMEL_IMAPX_COMMAND_FILE: {
 		gchar *path = data;
-		struct stat st;
+		GStatBuf st;
 
 		if (g_stat (path, &st) == 0) {
 			data = g_strdup (data);

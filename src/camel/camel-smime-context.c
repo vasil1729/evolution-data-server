@@ -8,6 +8,8 @@
 
 #include "evolution-data-server-config.h"
 
+#include <glib.h>
+
 #ifdef ENABLE_SMIME
 
 #include "nss.h"

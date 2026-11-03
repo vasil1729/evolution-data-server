@@ -348,6 +348,7 @@ summary_update (CamelLocalSummary *cls,
 	gint fd;
 	gint ok = 0;
 	struct stat st;
+	GStatBuf gst;
 	goffset size = 0;
 	GPtrArray *delete_uids = NULL;
 	GPtrArray *known_uids;
@@ -464,10 +465,10 @@ summary_update (CamelLocalSummary *cls,
 
 	/* update the file size/mtime in the summary */
 	if (ok != -1) {
-		if (g_stat (cls->folder_path, &st) == 0) {
+		if (g_stat (cls->folder_path, &gst) == 0) {
 			camel_folder_summary_touch (s);
-			mbs->folder_size = st.st_size;
-			camel_folder_summary_set_timestamp (s, st.st_mtime);
+			mbs->folder_size = gst.st_size;
+			camel_folder_summary_set_timestamp (s, gst.st_mtime);
 		}
 	}
 
@@ -485,7 +486,7 @@ mbox_summary_check (CamelLocalSummary *cls,
 {
 	CamelMboxSummary *mbs = (CamelMboxSummary *) cls;
 	CamelFolderSummary *s = (CamelFolderSummary *) cls;
-	struct stat st;
+	GStatBuf st;
 	gint ret = 0;
 	gint i;
 
@@ -894,7 +895,7 @@ mbox_summary_sync (CamelLocalSummary *cls,
                    GCancellable *cancellable,
                    GError **error)
 {
-	struct stat st;
+	GStatBuf st;
 	CamelMboxSummary *mbs = (CamelMboxSummary *) cls;
 	CamelFolderSummary *s = (CamelFolderSummary *) cls;
 	CamelStore *parent_store;

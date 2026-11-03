@@ -143,7 +143,7 @@ test_data_messages (void)
 	CamelStream *stream;
 	struct dirent *dent;
 	gchar *filename, *messages_dir, *rel;
-	struct stat st;
+	GStatBuf st;
 	DIR *dir;
 	gint fd;
 

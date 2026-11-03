@@ -274,7 +274,7 @@ recursive_scan (CamelStore *store,
 	gsize fullpath_len;
 	DIR *dp;
 	struct dirent *d;
-	struct stat st;
+	GStatBuf st;
 	CamelFolderInfo *fi;
 	struct _inode in, *inew;
 
@@ -356,7 +356,7 @@ folders_scan (CamelStore *store,
 	gchar  line[512], *path, *tmp;
 	gsize tmp_len;
 	CamelStream *stream, *in;
-	struct stat st;
+	GStatBuf st;
 	GPtrArray *folders;
 	GHashTable *visited;
 	gint len;
@@ -477,7 +477,7 @@ mh_store_get_folder_sync (CamelStore *store,
 	CamelService *service;
 	CamelFolder *folder = NULL;
 	gboolean use_dot_folders;
-	struct stat st;
+	GStatBuf st;
 	gchar *name;
 	gchar *path;
 

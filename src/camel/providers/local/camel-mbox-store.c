@@ -182,7 +182,7 @@ scan_dir (CamelStore *store,
 
 	while ((dent = g_dir_read_name (dir))) {
 		gchar *short_name, *full_name, *path, *ext;
-		struct stat st;
+		GStatBuf st;
 
 		if (dent[0] == '.')
 			continue;
@@ -284,7 +284,7 @@ xrename (CamelStore *store,
 {
 	CamelLocalStore *ls = (CamelLocalStore *) store;
 	gchar *oldpath, *newpath;
-	struct stat st;
+	GStatBuf st;
 	gint ret = -1;
 
 	if (ext != NULL) {
@@ -343,7 +343,7 @@ mbox_store_get_folder_sync (CamelStore *store,
 {
 	CamelStoreClass *store_class;
 	CamelLocalStore *local_store;
-	struct stat st;
+	GStatBuf st;
 	gchar *name;
 
 	/* Chain up to parent's get_folder_sync() method. */
@@ -454,7 +454,7 @@ mbox_store_get_folder_info_sync (CamelStore *store,
 	gchar *path, *subdir;
 	CamelFolderInfo *fi;
 	gchar *basename;
-	struct stat st;
+	GStatBuf st;
 
 	if (top == NULL)
 		top = "";
@@ -549,7 +549,7 @@ mbox_store_create_folder_sync (CamelStore *store,
 	gchar *path = NULL;
 	gchar *dir;
 	CamelFolder *folder;
-	struct stat st;
+	GStatBuf st;
 
 	service = CAMEL_SERVICE (store);
 
@@ -634,7 +634,7 @@ mbox_store_delete_folder_sync (CamelStore *store,
 	CamelFolderInfo *fi;
 	CamelFolder *lf;
 	gchar *name, *path;
-	struct stat st;
+	GStatBuf st;
 
 	local_store = CAMEL_LOCAL_STORE (store);
 	name = camel_local_store_get_full_path (local_store, folder_name);

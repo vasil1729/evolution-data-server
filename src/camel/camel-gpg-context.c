@@ -379,7 +379,7 @@ gpg_ctx_new (CamelCipherContext *context,
 	gpg->complete = FALSE;
 	gpg->seen_eof1 = TRUE;
 	gpg->seen_eof2 = FALSE;
-	gpg->pid = (pid_t) -1;
+	gpg->pid = (GPid) -1;
 	gpg->exit_status = 0;
 	gpg->exited = FALSE;
 
@@ -1058,13 +1058,14 @@ static gboolean
 gpg_ctx_op_start (struct _GpgCtx *gpg,
                   GError **error)
 {
+	GError *local_error = NULL;
+
 #ifndef G_OS_WIN32
 	gchar *status_fd = NULL, *command_fd = NULL;
 	gint errnosave;
 	gint status_pipe[2] = { -1, -1 }, command_pipe[2] = { -1, -1 };
 	gint pass_fds[2] = { -1, -1 };
 	GPtrArray *argv;
-	GError *local_error = NULL;
 	gint flags;
 	gboolean success;
 

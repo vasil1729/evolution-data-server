@@ -70,7 +70,7 @@ camel_lock_dot (const gchar *path,
 	gsize locktmp_len = 0;
 	gint retry = 0;
 	gint fdtmp;
-	struct stat st;
+	GStatBuf st;
 
 	/* TODO: Is there a reliable way to refresh the lock, if we're still busy with it?
 	 * Does it matter?  We will normally also use fcntl too ... */

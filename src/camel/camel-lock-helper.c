@@ -104,7 +104,7 @@ lock_path (const gchar *path,
 {
 	struct _lock_info *info = NULL;
 	gint res = CAMEL_LOCK_HELPER_STATUS_OK;
-	struct stat st;
+	GStatBuf st;
 
 	d (fprintf (stderr, "locking path '%s' id = %d\n", path, lock_id));
 

@@ -53,7 +53,7 @@ spool_store_get_type (CamelSpoolStore *spool_store,
 	CamelSettings *settings;
 	CamelService *service;
 	camel_spool_store_t type;
-	struct stat st;
+	GStatBuf st;
 	gchar *path;
 
 	if (spool_store->priv->store_type != CAMEL_SPOOL_STORE_INVALID)
@@ -185,7 +185,7 @@ scan_dir (CamelStore *store,
 	gchar *name, *tmp, *fname;
 	gsize name_len;
 	CamelFolderInfo *fi = NULL;
-	struct stat st;
+	GStatBuf st;
 	CamelFolder *folder;
 	gchar from[80];
 	FILE *fp;
@@ -445,7 +445,7 @@ spool_store_get_folder_sync (CamelStore *store,
 	CamelService *service;
 	CamelFolder *folder = NULL;
 	camel_spool_store_t type;
-	struct stat st;
+	GStatBuf st;
 	gchar *name;
 	gchar *path;
 

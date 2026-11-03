@@ -2092,7 +2092,7 @@ e_util_win32_initialize (void)
 		typedef BOOL (WINAPI *t_SetDllDirectoryA) (LPCSTR lpPathName);
 		t_SetDllDirectoryA p_SetDllDirectoryA;
 
-		p_SetDllDirectoryA = GetProcAddress (
+		p_SetDllDirectoryA = (t_SetDllDirectoryA) (void *) GetProcAddress (
 			GetModuleHandle ("kernel32.dll"),
 			"SetDllDirectoryA");
 
@@ -2712,8 +2712,13 @@ e_util_generate_uid (void)
 	add_i64 (g_get_monotonic_time ());
 	add_i64 (g_get_real_time ());
 	add_i64 (getpid ());
+#ifdef G_OS_WIN32
+	add_i64 (0);
+	add_i64 (0);
+#else
 	add_i64 (getgid ());
 	add_i64 (getppid ());
+#endif
 	add_i64 (g_atomic_int_add (&counter, 1));
 
 	add_str (g_get_host_name (), "localhost");

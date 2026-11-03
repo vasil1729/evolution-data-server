@@ -470,7 +470,7 @@ camel_block_file_rename (CamelBlockFile *bs,
                          const gchar *path)
 {
 	gint ret;
-	struct stat st;
+	GStatBuf st;
 	gint err;
 
 	g_return_val_if_fail (CAMEL_IS_BLOCK_FILE (bs), -1);
@@ -1155,7 +1155,7 @@ camel_key_file_rename (CamelKeyFile *kf,
                        const gchar *path)
 {
 	gint ret;
-	struct stat st;
+	GStatBuf st;
 	gint err;
 
 	g_return_val_if_fail (CAMEL_IS_KEY_FILE (kf), -1);

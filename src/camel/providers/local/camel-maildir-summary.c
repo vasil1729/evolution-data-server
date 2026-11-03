@@ -433,7 +433,7 @@ maildir_summary_next_uid_string (CamelFolderSummary *s)
 #else
 		CamelLocalSummary *cls = (CamelLocalSummary *) s;
 		gchar *name = NULL, *uid = NULL;
-		struct stat st;
+		GStatBuf st;
 		gint retry = 0;
 		guint32 nextuid = camel_folder_summary_next_uid (s);
 
@@ -874,7 +874,7 @@ maildir_summary_sync (CamelLocalSummary *cls,
 	CamelMaildirMessageInfo *mdi;
 	GPtrArray *removed_uids = NULL;
 	gchar *name;
-	struct stat st;
+	GStatBuf st;
 	GPtrArray *known_uids;
 
 	d (printf ("summary_sync(expunge=%s)\n", expunge?"true":"false"));

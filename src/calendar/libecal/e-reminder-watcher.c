@@ -33,6 +33,22 @@
 
 #include "e-reminder-watcher.h"
 
+#if !defined HAVE_LOCALTIME_R && !defined localtime_r
+# define localtime_r my_localtime_r
+static struct tm *localtime_r (const time_t *t, struct tm *tp);
+static struct tm *
+localtime_r (const time_t *t, struct tm *tp)
+{
+	struct tm *l = localtime (t);
+
+	if (!l)
+		return NULL;
+
+	*tp = *l;
+	return tp;
+}
+#endif
+
 typedef struct _ClientData {
 	EReminderWatcher *watcher; /* Just as an owner, not referenced */
 	ECalClient *client;

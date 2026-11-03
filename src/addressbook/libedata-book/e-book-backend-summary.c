@@ -650,7 +650,7 @@ e_book_backend_summary_save_item (EBookBackendSummary *summary,
 gboolean
 e_book_backend_summary_save (EBookBackendSummary *summary)
 {
-	struct stat sb;
+	GStatBuf sb;
 	FILE *fp = NULL;
 	gchar *new_filename = NULL;
 	gint i;

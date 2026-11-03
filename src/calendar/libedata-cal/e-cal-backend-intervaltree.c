@@ -23,6 +23,22 @@
 
 #include "e-cal-backend-intervaltree.h"
 
+#if !defined HAVE_LOCALTIME_R && !defined localtime_r
+# define localtime_r my_localtime_r
+static struct tm *localtime_r (const time_t *t, struct tm *tp);
+static struct tm *
+localtime_r (const time_t *t, struct tm *tp)
+{
+	struct tm *l = localtime (t);
+
+	if (!l)
+		return NULL;
+
+	*tp = *l;
+	return tp;
+}
+#endif
+
 #define d(x) x
 
 #define _TIME_MIN	((time_t) 0)		/* Min valid time_t	*/

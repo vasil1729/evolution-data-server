@@ -388,7 +388,7 @@ data_cache_expire (CamelDataCache *cdc,
 {
 	GDir *dir;
 	const gchar *dname;
-	struct stat st;
+	GStatBuf st;
 	GIOStream *stream;
 
 	dir = g_dir_open (path, 0, NULL);
@@ -683,7 +683,7 @@ camel_data_cache_get (CamelDataCache *cdc,
 {
 	GFileIOStream *stream;
 	GFile *file;
-	struct stat st;
+	GStatBuf st;
 	gchar *real;
 
 	g_return_val_if_fail (CAMEL_IS_DATA_CACHE (cdc), NULL);
@@ -802,7 +802,7 @@ camel_data_cache_clear (CamelDataCache *cdc,
 	gchar *base_dir;
 	GDir *dir;
 	const gchar *dname;
-	struct stat st;
+	GStatBuf st;
 
 	g_return_if_fail (CAMEL_IS_DATA_CACHE (cdc));
 	g_return_if_fail (path != NULL);
@@ -842,7 +842,7 @@ data_cache_foreach_remove (CamelDataCache *cdc,
 {
 	GDir *dir;
 	const gchar *dname;
-	struct stat st;
+	GStatBuf st;
 	GIOStream *stream;
 
 	dir = g_dir_open (path, 0, NULL);
@@ -892,7 +892,7 @@ camel_data_cache_foreach_remove (CamelDataCache *cdc,
 	gchar *base_dir;
 	GDir *dir;
 	const gchar *dname;
-	struct stat st;
+	GStatBuf st;
 
 	g_return_if_fail (CAMEL_IS_DATA_CACHE (cdc));
 	g_return_if_fail (path != NULL);

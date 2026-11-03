@@ -85,7 +85,7 @@ maildir_store_create_folder_sync (CamelStore *store,
 	CamelFolderInfo *info = NULL;
 	gchar *name = NULL, *fullname = NULL;
 	gchar *path;
-	struct stat st;
+	GStatBuf st;
 
 	/* This is a pretty hacky version of create folder, but should basically work */
 
@@ -193,7 +193,7 @@ maildir_store_get_folder_sync (CamelStore *store,
 	CamelMaildirStore *maildir_store;
 	gchar *name, *tmp, *cur, *new, *dir_name;
 	gchar *path;
-	struct stat st;
+	GStatBuf st;
 	CamelFolder *folder = NULL;
 
 	g_return_val_if_fail (CAMEL_IS_MAILDIR_STORE (store), NULL);
@@ -324,7 +324,7 @@ maildir_store_delete_folder_sync (CamelStore *store,
 	CamelService *service;
 	gchar *name, *tmp, *cur, *new, *dir_name;
 	gchar *path;
-	struct stat st;
+	GStatBuf st;
 	gboolean success = TRUE;
 
 	if (g_ascii_strcasecmp (folder_name, "Inbox") == 0) {
@@ -500,7 +500,7 @@ scan_fi (CamelStore *store,
 	CamelFolderInfo *fi;
 	gchar *tmp, *cur, *new, *dir_name;
 	gchar *path;
-	struct stat st;
+	GStatBuf st;
 
 	service = CAMEL_SERVICE (store);
 
@@ -702,7 +702,7 @@ scan_dirs (CamelStore *store,
 	while ((d = readdir (dir))) {
 		gchar *full_name, *filename;
 		const gchar *short_name;
-		struct stat st;
+		GStatBuf st;
 
 		if (strcmp (d->d_name, "tmp") == 0
 				|| strcmp (d->d_name, "cur") == 0

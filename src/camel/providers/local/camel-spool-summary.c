@@ -311,7 +311,7 @@ spool_summary_check (CamelLocalSummary *cls,
 {
 	gint i;
 	gboolean work;
-	struct stat st;
+	GStatBuf st;
 	CamelFolderSummary *s = (CamelFolderSummary *) cls;
 	GPtrArray *known_uids;
 

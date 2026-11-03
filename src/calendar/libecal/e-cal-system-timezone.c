@@ -318,7 +318,7 @@ recursive_compare (struct stat *localtime_stat,
                    gint deep_level,
                    gchar **fallback)
 {
-	struct stat file_stat;
+	GStatBuf file_stat;
 
 	if (g_stat (file, &file_stat) != 0)
 		return NULL;
@@ -413,7 +413,7 @@ files_are_identical_inode (struct stat *a_stat,
 static gchar *
 system_timezone_read_etc_localtime_hardlink (GHashTable *ical_zones)
 {
-	struct stat stat_localtime;
+	GStatBuf stat_localtime;
 	gchar *retval, *fallback = NULL;
 
 	if (g_stat (ETC_LOCALTIME, &stat_localtime) != 0)
@@ -478,7 +478,7 @@ system_timezone_read_etc_localtime_content (GHashTable *ical_zones)
 	static gchar *last_timezone = NULL;
 	static GRecMutex mutex;
 
-	struct stat stat_localtime;
+	GStatBuf stat_localtime;
 	gchar *localtime_content = NULL;
 	gsize localtime_content_len = -1;
 	gchar *retval, *fallback = NULL;
@@ -644,7 +644,7 @@ system_timezone_find (void)
 	}
 
 	if (config_tz) {
-		struct stat stat_localtime;
+		GStatBuf stat_localtime;
 		gchar *localtime_content = NULL;
 		gsize localtime_content_len = -1;
 
@@ -654,7 +654,7 @@ system_timezone_find (void)
 					 &localtime_content,
 					 &localtime_content_len,
 					 NULL)) {
-			struct stat stat_config_tz;
+			GStatBuf stat_config_tz;
 			gchar *filename;
 
 			filename = g_build_filename (system_timezone_get_zoneinfo_dir (), config_tz, NULL);

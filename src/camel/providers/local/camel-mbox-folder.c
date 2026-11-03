@@ -149,7 +149,7 @@ mbox_folder_append_message_sync (CamelFolder *folder,
 	CamelMboxSummary *mbs = (CamelMboxSummary *) camel_folder_get_folder_summary (folder);
 	CamelMessageInfo *mi = NULL;
 	gchar *fromline = NULL;
-	struct stat st;
+	GStatBuf st;
 	gint retval;
 	gboolean has_attachment;
 #if 0

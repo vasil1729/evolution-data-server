@@ -178,7 +178,7 @@ local_store_get_folder_sync (CamelStore *store,
 	CamelSettings *settings;
 	CamelService *service;
 	CamelFolder *folder = NULL;
-	struct stat st;
+	GStatBuf st;
 	gchar *path;
 
 	service = CAMEL_SERVICE (store);
@@ -333,7 +333,7 @@ local_store_create_folder_sync (CamelStore *store,
 	CamelFolderInfo *info = NULL;
 	gchar *name = NULL;
 	gchar *path;
-	struct stat st;
+	GStatBuf st;
 
 	service = CAMEL_SERVICE (store);
 

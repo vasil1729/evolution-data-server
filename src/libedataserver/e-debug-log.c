@@ -158,6 +158,7 @@ e_debug_logv (gboolean is_milestone,
 	gchar *debug_str;
 	struct timeval tv;
 	struct tm tm;
+	time_t t;
 
 	lock ();
 
@@ -166,8 +167,9 @@ e_debug_logv (gboolean is_milestone,
 
 	str = g_strdup_vprintf (format, args);
 	gettimeofday (&tv, NULL);
+	t = (time_t) tv.tv_sec;
 
-	tm = *localtime (&tv.tv_sec);
+	tm = *localtime (&t);
 
 	debug_str = g_strdup_printf (
 		"%p;%04d/%02d/%02d;%02d:%02d:%02d.%04d;(%s);%s",

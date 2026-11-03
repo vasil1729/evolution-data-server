@@ -220,9 +220,12 @@ iconv_init (gint keep)
 		locale_lang = NULL;
 	} else {
 #ifdef G_OS_WIN32
-		g_get_charset (&locale_charset);
-		locale_charset = g_strdup (locale_charset);
-		e_strdown (locale_charset);
+		{
+			const gchar *charset = NULL;
+			g_get_charset (&charset);
+			locale_charset = g_strdup (charset);
+			e_strdown (locale_charset);
+		}
 #else
 #ifdef HAVE_CODESET
 		locale_charset = g_strdup (nl_langinfo (CODESET));

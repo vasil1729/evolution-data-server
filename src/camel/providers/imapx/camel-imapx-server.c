@@ -4716,7 +4716,7 @@ camel_imapx_server_sync_message_sync (CamelIMAPXServer *is,
 {
 	gchar *cache_file = NULL;
 	gboolean is_cached;
-	struct stat st;
+	GStatBuf st;
 	gboolean success = TRUE;
 
 	g_return_val_if_fail (CAMEL_IS_IMAPX_SERVER (is), FALSE);
